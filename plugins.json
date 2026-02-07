@@ -1,0 +1,102 @@
+{
+  "alpha-nvim": {
+    "gh": "goolord/alpha-nvim",
+    "nix": "alpha-nvim"
+  },
+  "barbar.nvim": {
+    "gh": "romgrk/barbar.nvim",
+    "nix": "barbar-nvim"
+  },
+  "catppucin-nvim": {
+    "gh": "catppuccin/nvim",
+    "nix": "catppuccin-nvim"
+  },
+  "cmp_luasnip": {
+    "gh": "saadparwaiz1/cmp_luasnip",
+    "nix": "cmp_luasnip"
+  },
+  "cmp-nvim-lsp": {
+    "gh": "hrsh7th/cmp-nvim-lsp",
+    "nix": "cmp-nvim-lsp"
+  },
+  "cmp-path": {
+    "gh": "hrsh7th/cmp-path",
+    "nix": "cmp-path"
+  },
+  "indent-blankline.nvim": {
+    "gh": "lukas-reineke/indent-blankline.nvim",
+    "nix": "indent-blankline-nvim"
+  },
+  "lualine.nvim": {
+    "gh": "nvim-lualine/lualine.nvim",
+    "nix": "lualine-nvim"
+  },
+  "LuaSnip": {
+    "gh": "L3MON4D3/LuaSnip",
+    "nix": "luasnip"
+  },
+  "markdown-preview.nvim": {
+    "gh": "iamcco/markdown-preview.nvim",
+    "nix": "markdown-preview-nvim"
+  },
+  "nui.nvim": {
+    "gh": "MunifTanjim/nui.nvim",
+    "nix": "nui-nvim"
+  },
+  "nvim-autopairs": {
+    "gh": "windwp/nvim-autopairs",
+    "nix": "nvim-autopairs"
+  },
+  "nvim-cmp": {
+    "gh": "hrsh7th/nvim-cmp",
+    "nix": "nvim-cmp"
+  },
+  "nvim-colorizer.lua": {
+    "gh": "catgoose/nvim-colorizer.lua",
+    "nix": "nvim-colorizer-lua"
+  },
+  "nvim-lspconfig": {
+    "gh": "neovim/nvim-lspconfig",
+    "nix": "nvim-lspconfig"
+  },
+  "nvim-surround": {
+    "gh": "kylechui/nvim-surround",
+    "nix": "nvim-surround"
+  },
+  "nvim-treesitter": {
+    "gh": "nvim-treesitter/nvim-treesitter",
+    "nix": ["nvim-treesitter", "withAllGrammars"]
+  },
+  "nvim-web-devicons": {
+    "gh": "nvim-tree/nvim-web-devicons",
+    "nix": "nvim-web-devicons"
+  },
+  "render-markdown.nvim": {
+    "gh": "MeanderingProgrammer/render-markdown.nvim",
+    "nix": "render-markdown-nvim"
+  },
+  "telescope.nvim": {
+    "gh": "nvim-telescope/telescope.nvim",
+    "nix": "telescope-nvim"
+  },
+  "typst-preview.nvim": {
+    "gh": "chomosuke/typst-preview.nvim",
+    "nix": "typst-preview-nvim"
+  },
+  "decisive.nvim": {
+    "gh": "emmanueltouzery/decisive.nvim",
+    "nix": "decisive-nvim"
+  },
+  "vim-visual-increment": {
+    "gh": "triglav/vim-visual-increment",
+    "nix": "vim-visual-increment"
+  },
+  "which-key.nvim": {
+    "gh": "folke/which-key.nvim",
+    "nix": "which-key-nvim"
+  },
+  "yazi.nvim": {
+    "gh": "mikavilpas/yazi.nvim",
+    "nix": "yazi-nvim"
+  }
+}
