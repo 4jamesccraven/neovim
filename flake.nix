@@ -1,15 +1,68 @@
 {
-  description = "A very basic flake";
+  description = "A flake providing the plugins for my neovim setup.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs =
+    { nixpkgs, ... }:
+    let
+      # Additional plugins not available in nixpkgs
+      pluginOverlay =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        in
+        (final: prev: {
+          vimPlugins = prev.vimPlugins // {
+            decisive-nvim = pkgs.vimUtils.buildVimPlugin {
+              name = "decisive-nvim";
+              src = pkgs.fetchFromGitHub {
+                owner = "emmanueltouzery";
+                repo = "decisive.nvim";
+                rev = "c401541b8429b787d7dcb441e43bee63fc94737c";
+                hash = "sha256-uy+Nj+hfeei8nquZCzIxDYf1eQsaPMX26IMh/opOwG0=";
+              };
+            };
+          };
+        });
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
-  };
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-linux"
+            "x86_64-darwin"
+            "aarch64-darwin"
+          ]
+          (
+            system:
+            f (
+              import nixpkgs {
+                inherit system;
+                overlays = [ pluginOverlay ];
+              }
+            )
+          );
+    in
+    {
+      pluginList = forAllSystems (
+        pkgs:
+        let
+          lib = pkgs.lib;
+          plgs = pkgs.vimPlugins;
+          pluginJSON = builtins.fromJSON (builtins.readFile ./plugins.json);
+          pluginList = map (builtins.getAttr "nix") (builtins.attrValues pluginJSON);
+          plgPaths = map (
+            nameOrPath:
+            if (builtins.isString nameOrPath) then
+              builtins.getAttr nameOrPath plgs
+            else
+              lib.getAttrFromPath nameOrPath plgs
+          ) pluginList;
+        in
+        plgPaths
+      );
+    };
 }
