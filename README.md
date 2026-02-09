@@ -1,10 +1,10 @@
 This repository is the "source of truth" for my neovim configuration. Using the
-contained here, it is possible to clone my configuration on to any operating
+data contained here, it is possible to clone my configuration on to any operating
 system, though currently I only support two (because they're all I actually use).
 
 Installation for NixOS
 ----------------------
-First, I add this flake as a dependency to my system flake, like so:
+First, I add this flake as a dependency to my system flake, like so[^1]:
 ```nix
 {
   ...
@@ -19,7 +19,7 @@ First, I add this flake as a dependency to my system flake, like so:
   outputs = { nixpkgs, self, ... }@inputs: { }
 }
 ```
-Then I set up neovim with [home-manager](https://github.com/nix-community/home-manager):
+Then I set up neovim with [home-manager](https://github.com/nix-community/home-manager)[^2]:
 ```nix
 { inputs, pkgs, ... }:
 
@@ -37,6 +37,8 @@ Finally, I clone this repo and symlink the config to my dotfiles:
 git clone git@github.com:4jamesccraven/neovim.git && cd neovim
 ln -sf "${pwd}/nvim" ~/.config/nvim
 ```
+[^1]: https://github.com/4jamesccraven/nixos-configs/blob/0681415df1f994b71c1276338c13010990b1eac9/flake.nix#L15-L18
+[^2]: https://github.com/4jamesccraven/nixos-configs/blob/0681415df1f994b71c1276338c13010990b1eac9/modules/traits/neovim.nix#L35
 
 Installation for Arch Linux
 ---------------------------
