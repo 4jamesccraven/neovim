@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-die() {
-    echo "Error: $1"
-    exit 1
-}
-
 # Where to install neovim config
 : "${XDG_CONFIG_HOME:=$HOME/.config}"
 : "${NVIM_APPNAME:=nvim}"
@@ -26,22 +21,31 @@ copy-configs() {
     find "$CONFIG_DIR" -type f -name "*.lua" -exec sed -i '/-- NIX$/d' {} +
 }
 
-if [[ -d "$CONFIG_DIR" ]]; then
-    rm -fr "$CONFIG_DIR"
-    mkdir -p "$CONFIG_DIR"
-else
-    mkdir -p "$CONFIG_DIR"
-fi
+clean-old-configs() {
+    if [[ -d "$CONFIG_DIR" ]]; then
+        rm -fr "$CONFIG_DIR"
+        mkdir -p "$CONFIG_DIR"
+    else
+        mkdir -p "$CONFIG_DIR"
+    fi
+}
 
-echo "$0: installing needed packages..."
+die() {
+    echo "Error: $1"
+    exit 1
+}
+
 case "$DISTRO" in
     arch)
+        echo "$0: installing needed packages..."
         sudo pacman -S --quiet --needed \
             neovim \
             base-devel \
             python \
             xclip wl-clipboard \
             ripgrep fd yazi
+
+        clean-old-configs
         ;;
     *)
         die "unsupported distro"
