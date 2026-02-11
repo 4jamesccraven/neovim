@@ -1,4 +1,5 @@
 return function()
+    local map = require'config.map'
     ---[nvim-lspconfig]---
     -- Servers
     vim.lsp.enable('csharp_ls')
@@ -27,13 +28,13 @@ return function()
     })
 
     -- Keybinds
-    require 'config.map' ('n', '<leader>lk', function() vim.lsp.buf.hover() end)
-    require 'config.map' ('n', '<leader>lf', function() vim.lsp.buf.definition() end)
-    require 'config.map' ('n', '<leader>d', function() vim.diagnostic.open_float() end)
-    require 'config.map' ('n', '<leader>lr', function() vim.lsp.buf.rename() end)
-    require 'config.map' ('n', '<leader>ln', function() vim.diagnostic.goto_next() end)
-    require 'config.map' ('n', '<leader>lp', function() vim.diagnostic.goto_prev() end)
-    require 'config.map' ('n', '<leader>lb', function() vim.lsp.buf.format() end)
+    map('n', '<leader>lk', function() vim.lsp.buf.hover() end)
+    map('n', '<leader>lf', function() vim.lsp.buf.definition() end)
+    map('n', '<leader>d', function() vim.diagnostic.open_float() end)
+    map('n', '<leader>lr', function() vim.lsp.buf.rename() end)
+    map('n', '<leader>ln', function() vim.diagnostic.goto_next() end)
+    map('n', '<leader>lp', function() vim.diagnostic.goto_prev() end)
+    map('n', '<leader>lb', function() vim.lsp.buf.format() end)
 
     -- Autocommands
     vim.api.nvim_create_autocmd('LspAttach', {

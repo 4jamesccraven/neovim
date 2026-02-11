@@ -1,8 +1,8 @@
-require 'plugins'
 local map = require 'config.map'
 
 -- Leader Key
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Clipboard
 vim.opt.clipboard = 'unnamedplus'
@@ -76,3 +76,5 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 -- Sorting
 map('v', '<C-s>', ':sort<CR>')
+
+require 'plugins'
