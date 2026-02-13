@@ -59,12 +59,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Set tabsize for *.nix
-vim.cmd([[
-    augroup NixTabSettings
-    autocmd!
-    autocmd FileType nix setlocal tabstop=2 shiftwidth=2 expandtab
-    augroup END
-]])
+local group = vim.api.nvim_create_augroup('NixTabSettings', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+    group = group,
+    pattern = 'nix',
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.expandtab = true
+    end
+})
 
 --> Keymap Configuration <--
 -- Split navigation
