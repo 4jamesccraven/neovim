@@ -4,14 +4,18 @@ return function()
         pattern = "*",
         callback = function(event)
             local bufnr = event.buf
-            local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
-            if not lang then
-                return -- no parser for this filetype
+            local ft = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
+            local excluded = {
+                csv = true, -- Decisive.nvim provides a better parser
+            }
+            -- no parser for ft or explicitly excluded
+            if not ft or excluded[ft] then
+                return
             end
 
-            local ok = pcall(vim.treesitter.get_parser, bufnr, lang)
+            local ok = pcall(vim.treesitter.get_parser, bufnr, ft)
             if ok then
-                vim.treesitter.start(bufnr, lang)
+                vim.treesitter.start(bufnr, ft)
             end
         end,
     })
