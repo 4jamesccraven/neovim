@@ -9,15 +9,12 @@
     { nixpkgs, ... }:
     let
       # Additional plugins not available in nixpkgs
-      pluginOverlay =
-        let
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        in
-        (final: prev: {
+      pluginOverlay = (
+        final: prev: {
           vimPlugins = prev.vimPlugins // {
-            decisive-nvim = pkgs.vimUtils.buildVimPlugin {
+            decisive-nvim = prev.vimUtils.buildVimPlugin {
               name = "decisive-nvim";
-              src = pkgs.fetchFromGitHub {
+              src = prev.fetchFromGitHub {
                 owner = "emmanueltouzery";
                 repo = "decisive.nvim";
                 rev = "c401541b8429b787d7dcb441e43bee63fc94737c";
@@ -25,7 +22,8 @@
               };
             };
           };
-        });
+        }
+      );
 
       forAllSystems =
         f:
