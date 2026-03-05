@@ -51,10 +51,6 @@
     "gh": "hrsh7th/nvim-cmp",
     "nix": "nvim-cmp"
   },
-  "nvim-colorizer.lua": {
-    "gh": "catgoose/nvim-colorizer.lua",
-    "nix": "nvim-colorizer-lua"
-  },
   "nvim-lspconfig": {
     "gh": "neovim/nvim-lspconfig",
     "nix": "nvim-lspconfig"
