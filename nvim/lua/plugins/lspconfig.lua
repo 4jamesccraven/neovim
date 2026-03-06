@@ -3,6 +3,7 @@ return function()
     ---[nvim-lspconfig]---
     local servers = {
         -- Always Installed
+        bashls = true,
         clangd = true,
         pyright = true,
         rust_analyzer = true,
