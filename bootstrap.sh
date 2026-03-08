@@ -13,7 +13,7 @@ copy-configs() {
     rsync -a ./nvim/ "$CONFIG_DIR"
 
     # Bootstrap lazy-nvim
-    echo "$(python ./codegen/gen-plugins.py)" > "${CONFIG_DIR}/lua/plug-gen.lua"
+    python ./codegen/gen-plugins.py > "${CONFIG_DIR}/lua/plug-gen.lua"
     cp ./codegen/lazy-bootstrap.lua "${CONFIG_DIR}/lua/config/lazy.lua"
     sed -i "1s/^/require'config.lazy'\n/" "${CONFIG_DIR}/init.lua"
 
