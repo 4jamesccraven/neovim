@@ -60,6 +60,7 @@ return function()
         gopls = true,
         hls = true,
         jdtls = true,
+        perlls = true,
     }
 
     -- Enable all servers, apply config if provided

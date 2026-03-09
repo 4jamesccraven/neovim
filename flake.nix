@@ -62,5 +62,13 @@
         in
         plgPaths
       );
+
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            (perl.withPackages (ps: [ ps.PerlLanguageServer ]))
+          ];
+        };
+      });
     };
 }
