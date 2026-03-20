@@ -28,15 +28,61 @@ return function()
     end
 
     ls.add_snippets('all', {
+        -- Short Date
         snip('dt', {
             f(function() return shell_cmd('date +%D') end)
         }),
+        -- Long Date
         snip('date', {
             f(function() return shell_cmd('date "+%d %B, %Y"') end)
         }),
+        -- Shebang
+        snip({
+            trig = '^#!/',
+            trigEngine = 'pattern',
+            snippetType = 'autosnippet',
+        }, {
+            t('#!/usr/bin/env '),
+            i(1, 'bash'),
+            t({ '', '' }),
+            i(0)
+        })
     })
 
     ls.add_snippets('nix', {
+        -- Module docstring
+        snip({
+            trig = '^!!mod',
+            trigEngine = 'pattern',
+            snippetType = 'autosnippet',
+        }, {
+            t({ '/*', '  ====[ ' }),
+            i(1),
+            t({ ' ]====', '  :: ' }),
+            i(2, 'dotfile'),
+            t({ '', '', '  ' }),
+            i(3),
+            t({ '', '*/', '' }),
+            i(0),
+        }),
+
+        -- Function docstring
+        snip({
+            trig = '^!!fn',
+            trigEngine = 'pattern',
+            snippetType = 'autosnippet',
+        }, {
+            t({ '/*', '  ' }),
+            i(1, 'func'),
+            t(' :: '),
+            i(2, 'int -> string'),
+            t({ '', '', '  ' }),
+            i(3),
+            t({ '.', '*/', '' }),
+            i(0),
+        }),
+
+        -- File-level Function Parameter
         snip({
             trig = '^f}',
             trigEngine = 'pattern',
@@ -47,6 +93,8 @@ return function()
             t({ '... }:', '', '' }),
             i(0),
         }),
+
+        -- List using `with pkgs;`
         snip({
             trig = 'w]',
             snippetType = 'autosnippet',
@@ -55,9 +103,11 @@ return function()
             i(1, 'pkgs'),
             t({ '; [', '  ' }),
             i(2),
-            t({ '', '];', '' }),
-            i(0)
+            t({ '', '];' }),
+            i(0),
         }),
+
+        -- Multiline string
         snip({
             trig = "s'",
             snippetType = 'autosnippet',
@@ -65,6 +115,28 @@ return function()
             t({ "''", '  ' }),
             i(0),
             t({ '', "'';" })
+        }),
+
+        -- Multiline comment
+        snip({
+            trig = '^/%*',
+            trigEngine = 'pattern',
+            snippetType = 'autosnippet'
+        }, {
+            t({ '/*', '  ' }),
+            i(1),
+            t({ '', '*/', '' }),
+            i(0),
+        }),
+
+        -- Autocomplete attributes and let-ins (adds a semi-colon)
+        snip({
+            trig = '= ',
+            snippetType = 'autosnippet',
+        }, {
+            t('= '),
+            i(0),
+            t(';'),
         }),
     })
 
