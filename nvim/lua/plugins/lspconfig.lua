@@ -57,10 +57,12 @@ return function()
         -- Shell Only
         chsharp_ls = true,
         cmake = true,
+        cssls = true,
         gopls = true,
         hls = true,
         jdtls = true,
         perlls = true,
+        ts_ls = true,
     }
 
     -- Enable all servers, apply config if provided
